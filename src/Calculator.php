@@ -9,8 +9,12 @@ class Calculator
         return $argument1 + $argument2;
     }
 
-    public function divide($argument1, $argument2)
+    public function divide($numerator, $denominator)
     {
-        return $argument1/$argument2;
+        if ($denominator === 0) {
+	        throw new DivisionByZeroException();
+	    }
+
+	    return $numerator / $denominator;
     }
 }
