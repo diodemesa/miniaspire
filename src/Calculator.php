@@ -8,4 +8,9 @@ class Calculator
     {
         return $argument1 + $argument2;
     }
+
+    public function divide($argument1, $argument2)
+    {
+        return $argument1/$argument2;
+    }
 }
