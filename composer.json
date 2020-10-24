@@ -1,5 +1,5 @@
 {
-    "name": "laravel/laravel",
+    "name": "predmond/calculator-phpspec",
     "type": "project",
     "description": "The Laravel Framework.",
     "keywords": [
@@ -39,7 +39,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Predmond\\Calculator\\": "src/"
         },
         "classmap": [
             "database/seeds",
