@@ -1,8 +1,8 @@
 <?php
 
-namespace spec;
+namespace spec\Predmond\Calculator;
 
-use Markdown;
+use Predmond\Calculator\Markdown;
 use PhpSpec\ObjectBehavior;
 
 class MarkdownSpec extends ObjectBehavior

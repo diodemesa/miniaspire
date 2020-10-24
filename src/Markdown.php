@@ -1,5 +1,7 @@
 <?php
 
+namespace Predmond\Calculator;
+
 class Markdown
 {
     public function toHtml($argument1)
