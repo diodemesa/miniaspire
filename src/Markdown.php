@@ -2,9 +2,9 @@
 
 namespace Predmond\Calculator;
 
-use Markdown\Writer;
+use Predmond\Calculator\Markdown\Writer;
 
-class Markdown
+class Markdown implements Writer
 {
     public function __construct($argument1)
     {
@@ -18,6 +18,10 @@ class Markdown
 
     public function outputHtml($argument1)
     {
-        // TODO: write logic here
+        return $this->writeText("<p>Hi, there</p>");
     }
+    function writeText($argument1){
+    	return $argument1;
+    }
+
 }

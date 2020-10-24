@@ -17,11 +17,15 @@ class MarkdownSpec extends ObjectBehavior
     {
         $this->toHtml("Hi, there")->shouldReturn("<p>Hi, there</p>");
     }
-    function it_outputs_converted_text(Writer $writer)
-    {
-        $this->beConstructedWith($writer);
-        $writer->writeText("<p>Hi, there</p>")->shouldBeCalled();
+    // function it_outputs_converted_text(Writer $writer)
+    // {
+    //     $this->beConstructedWith($writer);
+    //     $writer->writeText("<p>Hi, there</p>")->shouldBeCalled();
 
-        $this->outputHtml("Hi, there");
+    //     $this->outputHtml("Hi, there");
+    // }
+    function let(Writer $writer)
+    {
+        $this->beConstructedWith($writer, true);
     }
 }
