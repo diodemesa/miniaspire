@@ -13,6 +13,6 @@ class CalculatorSpec extends ObjectBehavior
     }
     function it_can_add_two_numbers()
 	{
-
+		$this->add(2,3)->shouldReturn(5);
 	}
 }
