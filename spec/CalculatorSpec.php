@@ -27,4 +27,9 @@ class CalculatorSpec extends ObjectBehavior
 	{
 	    $this->shouldThrow('\Predmond\Calculator\DivisionByZeroException')->duringDivide(10, 0);
 	}
+	
+	function it_should_sum(){
+		$this->sum(4, 7);
+        $this->result()->shouldBe(11);
+	}
 }

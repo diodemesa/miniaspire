@@ -4,6 +4,9 @@ use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use Predmond\Calculator\Calculator;
+
+use Tests\TestCase;
 
 /**
  * Defines application features from the specific context.
@@ -36,6 +39,6 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
      */
     public function theCalculatedValueShouldBe($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->calculator->result());
+        TestCase::assertEquals($arg1, $this->calculator->result());
     }
 }
