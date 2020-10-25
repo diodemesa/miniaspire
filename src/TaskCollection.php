@@ -2,10 +2,16 @@
 
 namespace Predmond\Calculator;
 
-class TaskCollection
+class TaskCollection implements \Countable
 {
-    public function add($argument1)
+	public $tasks = array();
+
+    public function add(Task $task)
     {
-        // TODO: write logic here
+        $this->tasks[] = $task;
     }
+    public function count()
+	{
+	    return count($this->tasks);
+	}
 }
