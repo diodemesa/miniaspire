@@ -7,6 +7,7 @@ use Behat\Gherkin\Node\TableNode;
 use Predmond\Calculator\Calculator;
 
 use Tests\TestCase;
+use Predmond\Calculator\Config;
 
 /**
  * Defines application features from the specific context.
@@ -81,34 +82,47 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
     }
 
     /**
-     * @Then I should get :arg1 as :arg2 option
+     * @Then I should get :value as :option option
      */
-    public function iShouldGetAsOption($arg1, $arg2)
+    public function iShouldGetAsOption($value, $option)
     {
-        throw new PendingException();
+        $actual = $this->config->get($option); // Taylor!
+     
+        if ( ! strcmp($value, $actual) == 0)
+            throw new Exception("Expected {$actual} to be '{$option}'.");
     }
 
     /**
-     * @Given the option :arg1 is not yet configured
+     * @Given the option :option is not yet configured
      */
-    public function theOptionIsNotYetConfigured($arg1)
+    public function theOptionIsNotYetConfigured($option)
     {
-        throw new PendingException();
+        $config = include 'fixtures/config.php';
+     
+        if ( ! is_array($config)) $config = [];
+     
+        unset($config[$option]);
+     
+        $content = "<?php\n\nreturn " . var_export($config, true) . ";\n";
+     
+        file_put_contents('fixtures/config.php', $content);
+    }
+    /**
+     * @Then I should get default value :default as :option option
+     */
+    public function iShouldGetDefaultValueAsOption($default, $option)
+    {
+        $actual = $this->config->get($option, $default); // Taylor!
+     
+        if ( ! strcmp($default, $actual) == 0)
+            throw new Exception("Expected {$actual} to be '{$default}'.");
     }
 
     /**
-     * @Then I should get default value :arg1 as :arg2 option
+     * @When I set the :option configuration option to :value
      */
-    public function iShouldGetDefaultValueAsOption($arg1, $arg2)
+    public function iSetTheConfigurationOptionTo($option, $value)
     {
-        throw new PendingException();
-    }
-
-    /**
-     * @When I set the :arg1 configuration option to :arg2
-     */
-    public function iSetTheConfigurationOptionTo($arg1, $arg2)
-    {
-        throw new PendingException();
+        $this->config->set($option, $value); // Taylor!
     }
 }
