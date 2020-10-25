@@ -30,6 +30,17 @@ class TodoListSpec extends ObjectBehavior
 	    $tasks->count()->willReturn(20);
 	    $this->tasks = $tasks;
 	 
-	    $this->hasTasks()->shouldReturn(true);
+	    $this->hasTasks()->shouldBeTrue();
+	}
+	function getMatchers() : array
+	{
+	    return [
+	        'beTrue' => function($subject) {
+	            return $subject === true;
+	        },
+	        'beFalse' => function($subject) {
+	            return $subject === false;
+	        },
+	    ];
 	}
 }
