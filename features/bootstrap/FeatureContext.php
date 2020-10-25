@@ -27,7 +27,8 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
      */
     public function theMethodReceivesTheNumbersAnd($arg1, $arg2, $arg3)
     {
-        throw new PendingException();
+        $this->calculator = new Calculator();
+        $this->calculator->$arg1($arg2, $arg3);
     }
 
     /**
@@ -35,6 +36,6 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
      */
     public function theCalculatedValueShouldBe($arg1)
     {
-        throw new PendingException();
+        PHPUnit::assertEquals($arg1, $this->calculator->result());
     }
 }
