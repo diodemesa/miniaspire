@@ -47,15 +47,29 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
      */
     public function thereIsAConfigurationFile()
     {
-        throw new PendingException();
+        if ( ! file_exists('fixtures/config.php'))
+            throw new Exception("File 'fixtures/config.php' not found");
+     
+        $config = include 'fixtures/config.php';
+     
+        if ( ! is_array($config))
+            throw new Exception("File 'fixtures/config.php' should contain an array");
     }
 
     /**
-     * @Given the option :arg1 is configured to :arg2
+     * @Given the option :option is configured to :value
      */
-    public function theOptionIsConfiguredTo($arg1, $arg2)
+    public function theOptionIsConfiguredTo($option, $value)
     {
-        throw new PendingException();
+        $config = include 'fixtures/config.php';
+     
+        if ( ! is_array($config)) $config = [];
+     
+        $config[$option] = $value;
+     
+        $content = "<?php\n\nreturn " . var_export($config, true) . ";\n";
+     
+        file_put_contents('fixtures/config.php', $content);
     }
 
     /**
@@ -63,7 +77,7 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
      */
     public function iLoadTheConfigurationFile()
     {
-        throw new PendingException();
+        $this->config = Config::load('fixtures/config.php'); // Taylor!
     }
 
     /**
