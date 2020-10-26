@@ -19,9 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 # LOAN APPLICATION
-Route::get('/loans', 'LoanController@index')->name('view.loans');
-Route::prefix('loan')->group(function () {
+Route::middleware('auth:api')->get('/loans', 'LoanController@index')->name('view.loans');
+Route::middleware('auth:api')->prefix('loan')->group(function () {
 	Route::get('/submit', 'LoanController@processLoanApplication')->name('loan.submit');
 	Route::get('/{loan}', 'LoanController@show')->name('loan.repayments');
 });
+
